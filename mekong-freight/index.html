@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mekong Freight – Logistics Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+Khmer:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1f3f;--navy2:#142d57;--org:#f26b1d;--bg:#f3f5f9;--card:#fff;--tx:#14213a;--mu:#64708a;--bd:#e0e5ee;--ok:#1a9a5b;--bad:#d23b3b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1424;--card:#111e36;--tx:#e8edf7;--mu:#93a0ba;--bd:#22304d}}
+:root[data-theme="dark"]{--bg:#0a1424;--card:#111e36;--tx:#e8edf7;--mu:#93a0ba;--bd:#22304d}
+*{box-sizing:inherit}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font:15px/1.5 'Plus Jakarta Sans','Noto Sans Khmer',system-ui,sans-serif;background:var(--bg);color:var(--tx);display:flex;min-height:100vh}
+aside{width:232px;background:var(--navy);color:#cfd8ea;padding:18px 12px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:auto;transition:width .2s}
+aside.c{width:64px}aside.c .lb,aside.c .brand span{display:none}
+.brand{display:flex;gap:10px;align-items:center;color:#fff;font-weight:800;font-size:17px;padding:4px 8px 18px}
+.brand i{width:30px;height:30px;border-radius:8px;background:var(--org);display:grid;place-items:center;font-style:normal;flex-shrink:0}
+nav a{display:flex;gap:12px;align-items:center;padding:10px;border-radius:8px;color:inherit;text-decoration:none;cursor:pointer;margin-bottom:2px}
+nav a:hover{background:var(--navy2)}nav a.on{background:var(--org);color:#fff;font-weight:600}
+main{flex:1;min-width:0}
+header{display:flex;gap:10px;align-items:center;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:5}
+header h1{font-size:18px;margin:0;flex:1}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:8px}
+button.p{background:var(--org);border-color:var(--org);color:#fff;font-weight:600}button.d{color:var(--bad)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--org);outline-offset:2px}
+section{padding:24px;max-width:1200px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
+.kpi b{display:block;font-size:26px;font-weight:800}.kpi span{color:var(--mu);font-size:13px}
+.hero{background:var(--navy);color:#fff;border-radius:14px;padding:26px;margin-bottom:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.hero b{font-size:42px;font-weight:800;color:var(--org);display:block;line-height:1.1}
+.cols{display:grid;gap:16px;grid-template-columns:2fr 1fr;margin-top:16px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}aside{position:fixed;z-index:20;transform:translateX(-100%)}aside.o{transform:none;width:232px}aside.o .lb,aside.o .brand span{display:inline}}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}
+input,select{width:100%;font:inherit;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)}
+.f{display:grid;gap:0 14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.res{margin-top:14px;border-top:1px dashed var(--bd);padding-top:10px}
+.res div{display:flex;justify-content:space-between;padding:4px 0}.res .t{font-size:22px;font-weight:800;color:var(--org);border-top:1px solid var(--bd);margin-top:6px;padding-top:8px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--bd);white-space:nowrap}th{color:var(--mu);font-weight:600}
+.bd{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;background:#e8eefb;color:#25488f}.bd.Delivered{background:#dff5e8;color:var(--ok)}.bd.Pending{background:#fdeedd;color:#b25a0a}
+.warn{background:#fff4e8;color:#8a4b0c;border-left:3px solid var(--org);padding:8px 12px;border-radius:6px;font-size:13px;margin-bottom:10px}
+.tl{list-style:none;padding:0;margin:14px 0}.tl li{padding:0 0 14px 24px;position:relative;color:var(--mu)}.tl li:before{content:"";position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bd)}.tl li.d{color:var(--tx)}.tl li.d:before{background:var(--org)}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--org);transition:width .5s}
+dialog{border:0;border-radius:14px;padding:22px;width:min(480px,92vw);background:var(--card);color:var(--tx)}dialog::backdrop{background:#0b1f3f99}
+#toast{position:fixed;right:16px;bottom:16px;display:grid;gap:8px;z-index:50}#toast div{background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;border-left:4px solid var(--ok)}#toast .e{border-color:var(--bad)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}.row input,.row select{width:auto;flex:1;min-width:140px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<aside id="sb"><div class="brand"><i>▲</i><span>Mekong Freight</span></div><nav id="nav"></nav></aside>
+<main><header><button id="mt" aria-label="Menu">☰</button><h1 id="ttl"></h1>
+<button id="th" aria-label="Theme">◐</button><button id="lg">ខ្មែរ</button></header>
+<section id="v"></section></main><div id="toast"></div>
+<dialog id="dg"></dialog>
+<script>
+const $=s=>document.querySelector(s);
+const TR={en:{dashboard:"Dashboard",calc:"Shipping Calculator",customs:"Customs Tax",track:"Tracking",cargo:"Cargo",ship:"Total shipments",pend:"Pending",transit:"In transit",deliv:"Delivered",rev:"Revenue",exp:"Expenses",net:"Net profit",recent:"Recent shipments",monthly:"Monthly revenue",methods:"Shipping methods",est:"Estimates only – not an official tax assessment.",add:"Add cargo",save:"Save",cancel:"Cancel",del:"Delete",edit:"Edit",search:"Search cargo",all:"All statuses",csv:"Export CSV",total:"Total estimated cost",go:"Search shipment"},
+km:{dashboard:"ផ្ទាំងគ្រប់គ្រង",calc:"ម៉ាស៊ីនគណនាដឹកជញ្ជូន",customs:"ពន្ធគយ",track:"តាមដានឥវ៉ាន់",cargo:"ទំនិញ",ship:"ការដឹកជញ្ជូនសរុប",pend:"រង់ចាំ",transit:"កំពុងដឹក",deliv:"បានដល់",rev:"ប្រាក់ចំណូល",exp:"ចំណាយ",net:"ប្រាក់ចំណេញសុទ្ធ",recent:"ការដឹកជញ្ជូនថ្មីៗ",monthly:"ចំណូលប្រចាំខែ",methods:"វិធីដឹកជញ្ជូន",est:"ការប៉ាន់ស្មានប៉ុណ្ណោះ – មិនមែនការវាយតម្លៃពន្ធផ្លូវការទេ។",add:"បន្ថែមទំនិញ",save:"រក្សាទុក",cancel:"បោះបង់",del:"លុប",edit:"កែ",search:"ស្វែងរកទំនិញ",all:"ស្ថានភាពទាំងអស់",csv:"នាំចេញ CSV",total:"តម្លៃប៉ាន់ស្មានសរុប",go:"ស្វែងរក"}};
+let L=load('lg_lang','en'),page=(location.hash||'#dashboard').slice(1);
+function load(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+const t=k=>TR[L][k]||k, $$=n=>'$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+const ST=["Pending","Picked up","In transit","At customs","Delivered"],MD=["Sea","Air","Land"];
+const CU=["Sokha Trading","Angkor Retail","Khmer Foods Co.","Phnom Tech","Siem Reap Crafts","Mekong Build","Bayon Textiles","Kampot Pepper Ltd","Delta Auto Parts","Lotus Electronics"];
+const RT=[["Shanghai","Sihanoukville"],["Bangkok","Phnom Penh"],["Ho Chi Minh","Phnom Penh"],["Singapore","Sihanoukville"],["Shenzhen","Phnom Penh"]];
+function seed(){return Array.from({length:20},(_,i)=>{const r=RT[i%5],s=[0,1,2,2,3,4,4,4][i%8],m=MD[i%3];const w=200+i*137%1800;
+return{id:'MKF'+(240100+i),customer:CU[i%10],origin:r[0],dest:r[1],mode:m,weight:w,cbm:+(w/180).toFixed(1),status:ST[s],eta:'2026-12-'+String(2+i).padStart(2,'0'),rev:Math.round(w*(m=='Air'?6:m=='Sea'?2.4:3.1)+300),month:i%12}})}
+let S=load('lg_ship',null);if(!S){S=seed();store('lg_ship',S)}
+function toast(m,e){const d=document.createElement('div');d.textContent=m;if(e)d.className='e';$('#toast').append(d);setTimeout(()=>d.remove(),2800)}
+const NAV=[["dashboard","▦"],["calc","⚖"],["customs","%"],["track","⌖"],["cargo","▣"]];
+function nav(){$('#nav').innerHTML=NAV.map(([k,i])=>`<a href="#${k}" class="${k==page?'on':''}"><span>${i}</span><span class="lb">${t(k)}</span></a>`).join('');$('#ttl').textContent=t(page);document.documentElement.lang=L}
+function render(){nav();$('#v').innerHTML='';({dashboard,calc,customs,track,cargo}[page]||dashboard)();$('#sb').classList.remove('o')}
+addEventListener('hashchange',()=>{page=location.hash.slice(1)||'dashboard';render()});
+$('#mt').onclick=()=>{innerWidth<=860?$('#sb').classList.toggle('o'):$('#sb').classList.toggle('c')};
+$('#lg').onclick=()=>{L=L=='en'?'km':'en';store('lg_lang',L);$('#lg').textContent=L=='en'?'ខ្មែរ':'EN';render()};
+$('#th').onclick=()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme=='dark'?'light':'dark'};
+
+function dashboard(){const rev=S.reduce((a,s)=>a+s.rev,0),exp=Math.round(rev*.71);
+const mo=Array(12).fill(0);S.forEach(s=>mo[s.month]+=s.rev);const mx=Math.max(...mo,1);
+const cnt=m=>S.filter(s=>s.mode==m).length;
+const k=(a,b)=>`<div class="card kpi"><span>${a}</span><b>${b}</b></div>`;
+$('#v').innerHTML=`<div class="hero"><div><div>${t('net')}</div><b>${$$(rev-exp)}</b></div><div style="max-width:340px;opacity:.85">Mekong Freight moves cargo by sea, air and road between Cambodia, Thailand, Vietnam and China.</div></div>
+<div class="grid">${k(t('ship'),S.length)}${k(t('pend'),S.filter(s=>s.status=='Pending').length)}${k(t('transit'),S.filter(s=>s.status=='In transit').length)}${k(t('deliv'),S.filter(s=>s.status=='Delivered').length)}${k(t('rev'),$$(rev))}${k(t('exp'),$$(exp))}</div>
+<div class="cols"><div class="card"><b>${t('monthly')}</b><svg viewBox="0 0 360 140" style="width:100%;margin-top:10px">${mo.map((v,i)=>{const h=v/mx*110;return`<rect x="${i*30+6}" y="${120-h}" width="20" height="${h}" rx="3" fill="#f26b1d"><title>${$$(v)}</title></rect><text x="${i*30+16}" y="135" font-size="9" text-anchor="middle" fill="currentColor" opacity=".6">${'JFMAMJJASOND'[i]}</text>`}).join('')}</svg></div>
+<div class="card"><b>${t('methods')}</b>${MD.map(m=>`<div style="margin-top:12px">${m} · ${cnt(m)}<div class="bar"><i style="width:${cnt(m)/S.length*100}%"></i></div></div>`).join('')}</div></div>
+<div class="card" style="margin-top:16px"><b>${t('recent')}</b><div class=https://github.com/natdavanh168-oss/logistics-system.githttps://github.com/natdavanh168-oss/logistics-system.git"tw"><table><tr><th>ID</th><th>Customer</th><th>Route</th><th>Status</th></tr>${S.slice(0,6).map(s=>`<tr><td>${s.id}</td><td>${s.customer}</td><td>${s.origin} → ${s.dest}</td><td><span class="bd ${s.status}">${s.status}</span></td></tr>`).join('')}</table></div></div>`}
+
+function F(id,lab,val,type='number',opts){return`<div><label for="${id}">${lab}</label>${opts?`<select id="${id}">${opts.map(o=>`<option>${o}</option>`).join('')}</select>`:`<input id="${id}" type="${type}" value="${val}" min="0" step="any">`}</div>`}
+const n=id=>Math.max(0,parseFloat($('#'+id).value)||0);
+const R={FCL:{"20FT":1800,"40FT":3200,"40HQ":3500},lcl:85,sea:50,air:4.2,fuel:.15,airH:35,truck:{"Pickup Truck":.6,"Small Truck":.9,"Medium Truck":1.2,"Large Truck":1.6,"6-Wheel Truck":1.9,"10-Wheel Truck":2.4,"Container Truck":2.8}};
+const sea=(f,cs,cbm)=>f?R.FCL[cs]+R.sea:cbm*R.lcl+R.sea;
+const air=(w,l,wi,h)=>{const v=l*wi*h/6000,c=Math.max(w,v);return{v,c,cost:c*R.air*(1+R.fuel)+R.airH}};
+const land=(ftl,tr,km,cbm)=>ftl?km*R.truck[tr]:Math.max(cbm,1)*km*0.09;
+function calc(){let tab='sea';const v=$('#v');
+const draw=()=>{v.innerHTML=`<div class="tabs">${['sea','air','land','cmp'].map(x=>`<button class="${x==tab?'on':''}" data-t="${x}">${{sea:'Sea',air:'Air',land:'Land',cmp:'Sea vs Air vs Land'}[x]}</button>`).join('')}</div><div class="card"><div class="f">${{
+sea:F('mode','Type','',0,['FCL','LCL'])+F('cs','Container','',0,Object.keys(R.FCL))+F('w','Cargo weight (kg)',5000)+F('cbm','Volume (CBM)',12)+F('o','Origin port','',0,['Shanghai','Singapore','Ho Chi Minh'])+F('d','Destination port','',0,['Sihanoukville','Phnom Penh']),
+air:F('w','Actual weight (kg)',120)+F('l','Length (cm)',80)+F('wi','Width (cm)',60)+F('h','Height (cm)',50),
+land:F('mode','Load','',0,['FTL','LTL'])+F('tr','Truck','',0,Object.keys(R.truck))+F('km','Distance (km)',230)+F('w','Cargo weight (kg)',2000)+F('cbm','Volume (CBM)',8),
+cmp:F('w','Weight (kg)',500)+F('cbm','Volume (CBM)',3)+F('km','Land distance (km)',230)}[tab]}</div><div class="res" id="r"></div></div>`;
+v.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw()});v.querySelectorAll('input,select').forEach(e=>e.oninput=out);out()};
+const out=()=>{const r=$('#r'),row=(a,b,c)=>`<div class="${c||''}"><span>${a}</span><span>${b}</span></div>`;
+if(tab=='sea'){const f=$('#mode').value=='FCL',c=sea(f,$('#cs').value,n('cbm'));r.innerHTML=row('Shipping rate',$$(c-R.sea))+row('Handling fee',$$(R.sea))+row(t('total'),$$(c),'t')}
+if(tab=='air'){const a=air(n('w'),n('l'),n('wi'),n('h'));r.innerHTML=row('Volumetric weight',a.v.toFixed(1)+' kg')+row('Chargeable weight',a.c.toFixed(1)+' kg')+row('Rate',$$(R.air)+'/kg + 15% fuel')+row('Handling fee',$$(R.airH))+row(t('total'),$$(a.cost),'t')}
+if(tab=='land'){r.innerHTML=row('Rate basis',$('#mode').value=='FTL'?$$(R.truck[$('#tr').value])+'/km':'per CBM · km')+row(t('total'),$$(land($('#mode').value=='FTL',$('#tr').value,n('km'),n('cbm'))),'t')}
+if(tab=='cmp'){const a=[['Sea (LCL)',sea(0,'',n('cbm')),'~25 days'],['Air',air(n('w'),100,100,100).cost,'~3 days'],['Land',land(0,'',n('km'),n('cbm')),'~2 days']],mn=Math.min(...a.map(x=>x[1]));
+r.innerHTML=a.map(x=>row(x[0]+' · '+x[2],$$(x[1])+(x[1]==mn?' ✓ cheapest':''),x[1]==mn?'t':'')).join('')}};
+draw()}
+
+const HS={"Electronics (8517)":[.05,.1],"Garments (6109)":[.15,.0],"Vehicles parts (8708)":[.15,.1],"Food (1905)":[.15,.0],"Machinery (8429)":[.07,.0]};
+function customs(){$('#v').innerHTML=`<div class="warn">${t('est')}</div><div class="card"><div class="f">${F('pn','Product name','LED televisions','text')}${F('hs','HS code / category','',0,Object.keys(HS))}${F('co','Country of origin','China','text')}${F('pv','Product value (USD)',10000)}${F('sc','Shipping cost',800)}${F('ins','Insurance',100)}${F('q','Quantity',50)}</div><div class="res" id="r"></div></div>`;
+const go=()=>{const cif=n('pv')+n('sc')+n('ins'),[d,s]=HS[$('#hs').value],du=cif*d,sp=(cif+du)*s,vat=(cif+du+sp)*.1,ot=cif*.005,tax=du+sp+vat+ot,q=n('q')||1,row=(a,b,c)=>`<div class="${c||''}"><span>${a}</span><span>${b}</span></div>`;
+$('#r').innerHTML=row('CIF value',$$(cif))+row(`Import duty (${d*100}%)`,$$(du))+row(`Special tax (${s*100}%)`,$$(sp))+row('VAT (10%)',$$(vat))+row('Other fees (0.5%)',$$(ot))+row('Total estimated tax',$$(tax))+row('Total landed cost',$$(cif+tax),'t')+row('Per unit',$$((cif+tax)/q))};
+document.querySelectorAll('#v input,#v select').forEach(e=>e.oninput=go);go()}
+
+function track(){const v=$('#v');v.innerHTML=`<div class="card"><div class="row"><input id="tn" placeholder="e.g. MKF240104" aria-label="Tracking number"><button class="p" id="go">${t('go')}</button></div><div id="tr"><p style="color:var(--mu)">Enter a tracking number. Try ${S[3].id}.</p></div></div>`;
+const find=()=>{const s=S.find(x=>x.id==$('#tn').value.trim().toUpperCase()),o=$('#tr');if(!s){toast('Tracking number not found','e');o.innerHTML='<p>No shipment matches that number. Check it and try again.</p>';return}
+const i=ST.indexOf(s.status);o.innerHTML=`<h3>${s.id} · <span class="bd ${s.status}">${s.status}</span></h3><p>${s.origin} → ${s.dest} · ${s.mode} freight · ETA ${s.eta}<br>Cargo: ${s.weight} kg · ${s.cbm} CBM · ${s.customer}</p><div class="bar"><i style="width:${(i+1)/5*100}%"></i></div><ul class="tl">${ST.map((x,j)=>`<li class="${j<=i?'d':''}">${x}</li>`).join('')}</ul>`};
+$('#go').onclick=find;$('#tn').onkeydown=e=>e.key=='Enter'&&find()}
+
+function cargo(){const v=$('#v');v.innerHTML=`<div class="card"><div class="row"><input id="q" placeholder="${t('search')}" aria-label="${t('search')}"><select id="sf"><option value="">${t('all')}</option>${ST.map(x=>`<option>${x}</option>`)}</select><button class="p" id="ad">${t('add')}</button><button id="ex">${t('csv')}</button></div><div class="tw"><table id="tb"></table></div></div>`;
+const list=()=>{const q=$('#q').value.toLowerCase(),f=$('#sf').value,d=S.filter(s=>(!f||s.status==f)&&(s.id+s.customer+s.origin+s.dest).toLowerCase().includes(q));
+$('#tb').innerHTML=`<tr><th>ID</th><th>Customer</th><th>Route</th><th>Mode</th><th>kg</th><th>CBM</th><th>Status</th><th></th></tr>`+(d.length?d.map(s=>`<tr><td>${s.id}</td><td>${s.customer}</td><td>${s.origin} → ${s.dest}</td><td>${s.mode}</td><td>${s.weight}</td><td>${s.cbm}</td><td><span class="bd ${s.status}">${s.status}</span></td><td><button data-e="${s.id}">${t('edit')}</button> <button class="d" data-x="${s.id}">${t('del')}</button></td></tr>`).join(''):'<tr><td colspan="8">No cargo matches. Clear the filters or add cargo.</td></tr>');
+$('#tb').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>form(S.find(s=>s.id==b.dataset.e)));
+$('#tb').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{const id=b.dataset.x;const g=$('#dg');g.innerHTML=`<h3>Delete ${id}?</h3><p>This removes the cargo record. You can’t undo it.</p><div class="row"><button class="d" id="y">${t('del')}</button><button id="no">${t('cancel')}</button></div>`;g.showModal();$('#no').onclick=()=>g.close();$('#y').onclick=()=>{S=S.filter(s=>s.id!=id);store('lg_ship',S);g.close();toast('Deleted '+id);list()}})};
+const form=s=>{const g=$('#dg'),c=s||{id:'MKF'+(240100+Math.floor(Math.random()*9000)),customer:CU[0],origin:'Shanghai',dest:'Phnom Penh',mode:'Sea',weight:500,cbm:3,status:'Pending',eta:'2026-12-20',rev:1500,month:10};
+g.innerHTML=`<h3>${s?t('edit'):t('add')}</h3><div class="f">${F('fc','Customer','','',CU)}${F('fm','Mode','',0,MD)}${F('fw','Weight (kg)',c.weight)}${F('fv','Volume (CBM)',c.cbm)}${F('fs','Status','',0,ST)}${F('fo','Origin',c.origin,'text')}</div><p id="er" style="color:var(--bad);margin:8px 0 0"></p><div class="row" style="margin-top:14px"><button class="p" id="sv">${t('save')}</button><button id="cn">${t('cancel')}</button></div>`;
+$('#fc').value=c.customer;$('#fm').value=c.mode;$('#fs').value=c.status;g.showModal();$('#cn').onclick=()=>g.close();
+$('#sv').onclick=()=>{const w=n('fw'),cb=n('fv'),o=$('#fo').value.trim();if(!o||w<=0||cb<=0){$('#er').textContent='Enter an origin, and a weight and volume above zero.';return}
+Object.assign(c,{customer:$('#fc').value,mode:$('#fm').value,weight:w,cbm:cb,status:$('#fs').value,origin:o});if(!s)S.unshift(c);store('lg_ship',S);g.close();toast(s?'Saved '+c.id:'Added '+c.id);list()}};
+$('#q').oninput=list;$('#sf').onchange=list;$('#ad').onclick=()=>form();
+$('#ex').onclick=()=>{const csv=['id,customer,origin,dest,mode,weight,cbm,status,eta',...S.map(s=>[s.id,s.customer,s.origin,s.dest,s.mode,s.weight,s.cbm,s.status,s.eta].map(x=>`"${x}"`).join(','))].join('\n');
+const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='cargo.csv';a.click();toast('CSV exported')};list()}
+render();
+</script></body></html>
